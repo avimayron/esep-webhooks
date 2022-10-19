@@ -16,14 +16,14 @@ public class Function
     /// <param name="input"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public string FunctionHandler(string input, ILambdaContext context)
+    public string FunctionHandler(object input, ILambdaContext context)
     {
         dynamic json = JsonConvert.DeserializeObject<dynamic>(input.ToString());
 
         string payload = $"{{'text':'Issue Created: {json.issue.html_url}'}}";
 
         var client = new HttpClient();
-        var webRequest = new HttpRequestMessage(HttpMethod.Post, "{nothing}")
+        var webRequest = new HttpRequestMessage(HttpMethod.Post, "https://hooks.slack.com/services/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")
         {
             Content = new StringContent(payload, Encoding.UTF8, "application/json")
         };
